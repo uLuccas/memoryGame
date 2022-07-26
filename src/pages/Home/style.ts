@@ -4,7 +4,7 @@ export const HomeContainer = styled.div`
   min-height: 100vh;
   width: 100%;
 
-  background-color: aquamarine;
+  background-color: #1C1C1C;
 `;
 
 export const AreaWrapper = styled.div`
@@ -15,4 +15,5 @@ export const AreaWrapper = styled.div`
   flex-direction: row;
 
   padding: 0px 20px;
+  margin-top: 30px;
 `;

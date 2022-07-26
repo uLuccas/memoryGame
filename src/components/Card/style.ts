@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardContainer = styled.div`
+export const CardContainer = styled.button`
   width: 200px;
   height: auto;
 
@@ -9,7 +9,11 @@ export const CardContainer = styled.div`
   flex-direction: column;
   margin: 10px;
   padding: 10px;
-  background-color: beige;
+
+  color: #fff;
+  background-color: #363636;
+
+  border: 2px solid #000;
 
   border-radius: 10px 0px 10px 0px;
 `;
