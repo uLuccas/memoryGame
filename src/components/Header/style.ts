@@ -10,4 +10,6 @@ export const HeaderConteiner = styled.div`
 
   color: white;
   background-color: #363636;
+
+  letter-spacing: 1px;
 `;

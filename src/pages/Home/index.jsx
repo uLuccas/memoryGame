@@ -1,15 +1,61 @@
 import React, { useState, useEffect } from "react";
 import { Card } from "../../components/Card";
 import { Header } from "../../components/Header";
-import { HomeContainer, AreaWrapper } from "./style.ts";
+import { HomeContainer, AreaWrapper, Button } from "./style.ts";
+
+import xj from "../../assets/xj6.png";
+import fan from "../../assets/fan160.png";
+import titan from "../../assets/titan160.png";
+import cbr from "../../assets/cbr600.png";
+import cbrMil from "../../assets/cbr1000rr.png";
+import hornet from "../../assets/hornet600.png";
+import tiger from "../../assets/tiger.png";
+import xre from "../../assets/xre300.png";
 
 let data = [
-  { value: 1, name: "Cg 150 Carburada", cilindrada: 150 },
-  { value: 2, name: "Fan 160", cilindrada: 160 },
-  { value: 3, name: "Titan 160", cilindrada: 160 },
-  { value: 1, name: "Cg 150 Carburada", cilindrada: 150 },
-  { value: 2, name: "Fan 160", cilindrada: 160 },
-  { value: 3, name: "Titan 160", cilindrada: 160 },
+  { value: 1, name: "XJ6", cilindrada: 600, img: xj },
+  {
+    value: 2,
+    name: "Fan 160",
+    cilindrada: 160,
+    img: fan,
+  },
+  {
+    value: 3,
+    name: "Titan 160",
+    cilindrada: 160,
+    img: titan,
+  },
+  {
+    value: 4,
+    name: "CBR 600 RR",
+    cilindrada: 600,
+    img: cbr,
+  },
+  {
+    value: 5,
+    name: "CBR 1000 RR",
+    cilindrada: 1000,
+    img: cbrMil,
+  },
+  {
+    value: 6,
+    name: "Hornet 600",
+    cilindrada: 600,
+    img: hornet,
+  },
+  {
+    value: 7,
+    name: "Tiger 900 GT",
+    cilindrada: 900,
+    img: tiger,
+  },
+  {
+    value: 8,
+    name: "XRE 300 Rally",
+    cilindrada: 300,
+    img: xre,
+  },
 ];
 
 export function Home() {
@@ -18,14 +64,22 @@ export function Home() {
   const [selectedCard, setSelectedCard] = useState([]);
 
   function handleCheckCards(array) {
+    // let newData = data;
     if (array[0] === array[1]) {
-      let newArray = data.filter((item) => item.value !== array[0]);
-      data = newArray;
-      setCards(newArray);
-      setSelectedCard([]);
+      setTimeout(() => {
+        let newArray = cards.filter((item) => item.value !== array[0]);
+        // newData = newArray;
+        setCards(newArray);
+        setSelectedCard([]);
+      }, 3000);
     } else {
       setSelectedCard([]);
     }
+  }
+
+  function handleStartGame() {
+    setShowCards(!showCards);
+    setCards(data.concat(data));
   }
 
   useEffect(() => {
@@ -34,16 +88,11 @@ export function Home() {
     }
   }, [selectedCard]);
 
-  useEffect(() => {
-    setCards(data);
-  }, []);
-
   return (
     <HomeContainer>
       <Header />
 
-      <button onClick={() => setShowCards(!showCards)}>Começar!</button>
-
+      <Button onClick={() => handleStartGame()}>Começar!</Button>
       <AreaWrapper>
         {showCards &&
           cards.map((item, idx) => (
@@ -52,7 +101,9 @@ export function Home() {
               title={item.name}
               cilindrada={item.cilindrada}
               id={item.value}
-              selected={setSelectedCard}
+              setSelectedCard={setSelectedCard}
+              selectedCard={selectedCard}
+              img={item.img}
             />
           ))}
       </AreaWrapper>
