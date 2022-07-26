@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 export const HeaderConteiner = styled.div`
   width: 100%;
-  height: 150px;
+  height: 120px;
 
   display: flex;
   align-items: center;
   justify-content: space-around;
 
-  background-color: aqua;
+  color: white;
+  background-color: #363636;
+
+  letter-spacing: 1px;
 `;
