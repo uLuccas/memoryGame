@@ -19,6 +19,7 @@ export const CardContainerNotVisible = styled.button`
 
   img {
     width: 200px;
+    border-radius: 10px 0px 10px 0px;
   }
   &:hover {
     cursor: pointer;

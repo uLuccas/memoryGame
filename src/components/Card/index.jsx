@@ -4,14 +4,15 @@ import { CardContainer, CardContainerNotVisible, Image } from "./style.ts";
 import backgroud from "../../assets/denis.jpeg";
 
 export function Card({
+  id,
   title,
   cilindrada,
-  id,
   setSelectedCard,
   selectedCard,
   img,
 }) {
   const [isVisible, setIsVisible] = useState(false);
+  const [enabled, setEnabled] = useState(true);
 
   function handleSelectCard(id) {
     setSelectedCard((oldState) => [...oldState, id]);
@@ -20,25 +21,29 @@ export function Card({
 
   useEffect(() => {
     if (selectedCard.length === 2) {
+      setEnabled(false);
       setTimeout(() => {
         setIsVisible(false);
-      }, 3000);
+        setEnabled(true);
+      }, 2000);
     }
   }, [selectedCard]);
 
-  if (!isVisible) {
-    return (
-      <CardContainerNotVisible onClick={() => handleSelectCard(id)}>
-        <img src={backgroud} alt="Background card" />
-      </CardContainerNotVisible>
-    );
-  } else {
-    return (
-      <CardContainer onClick={() => handleSelectCard(id)}>
-        <h1>{title}</h1>
-        <span>Cilindradas: {cilindrada}</span>
-        <Image src={img} />
-      </CardContainer>
-    );
-  }
+  return (
+    <>
+      {!isVisible ? (
+        <CardContainerNotVisible
+          onClick={() => enabled && handleSelectCard(id)}
+        >
+          <img src={backgroud} alt="Background card" />
+        </CardContainerNotVisible>
+      ) : (
+        <CardContainer>
+          <h1>{title}</h1>
+          <span>Cilindradas: {cilindrada}</span>
+          <Image src={img} />
+        </CardContainer>
+      )}
+    </>
+  );
 }

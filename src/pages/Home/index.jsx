@@ -62,6 +62,8 @@ export function Home() {
   const [showCards, setShowCards] = useState(false);
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState([]);
+  const [scoreboard, setScoreboard] = useState(0);
+  const [attempts, setAttempts] = useState(0);
 
   function handleCheckCards(array) {
     // let newData = data;
@@ -71,15 +73,19 @@ export function Home() {
         // newData = newArray;
         setCards(newArray);
         setSelectedCard([]);
-      }, 3000);
+        setScoreboard(scoreboard + 1);
+      }, 2000);
     } else {
+      setAttempts(attempts + 1);
       setSelectedCard([]);
     }
   }
 
   function handleStartGame() {
-    setShowCards(!showCards);
+    setShowCards(true);
     setCards(data.concat(data));
+    setAttempts(0);
+    setScoreboard(0);
   }
 
   useEffect(() => {
@@ -90,7 +96,7 @@ export function Home() {
 
   return (
     <HomeContainer>
-      <Header />
+      <Header scoreboard={scoreboard} attempts={attempts} />
 
       <Button onClick={() => handleStartGame()}>Começar!</Button>
       <AreaWrapper>

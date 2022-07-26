@@ -11,9 +11,9 @@ export const HomeContainer = styled.div`
 `;
 
 export const AreaWrapper = styled.div`
-  width: 90%;
+  width: 80%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   flex-direction: row;
   margin-top: 30px;
